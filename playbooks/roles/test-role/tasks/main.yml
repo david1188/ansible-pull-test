@@ -1,3 +1,4 @@
+---
 - name: install apt package
   package:
     name: "{{ item }}"
