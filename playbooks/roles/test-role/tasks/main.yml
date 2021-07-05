@@ -3,5 +3,5 @@
   package:
     name: "{{ item }}"
     state: present
-    with_items:
-      - nano
+  with_items:
+    - nano
