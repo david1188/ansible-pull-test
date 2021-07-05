@@ -1,0 +1,6 @@
+- name: install apt package
+  package:
+    name: "{{ item }}"
+    state: present
+    with_items:
+      - nano
