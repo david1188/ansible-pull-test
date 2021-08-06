@@ -1,0 +1,11 @@
+iptables --new-chain RATE-LIMIT
+iptables --append INPUT --match conntrack --ctstate NEW --jump RATE-LIMIT
+iptables --append RATE-LIMIT --match hashlimit \
+--hashlimit-mode srcip \
+--hashlimit-upto 50/sec \
+--hashlimit-burst 20 \
+--hashlimit-name rate_limit \
+--jump ACCEPT
+
+iptables --append RATE-LIMIT --match limit --limit 1/sec --jump LOG --log-prefix "Rejected PMM conn: "
+iptables --append RATE-LIMIT --jump REJECT
